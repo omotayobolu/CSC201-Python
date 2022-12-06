@@ -11,7 +11,7 @@ elif score >= 45 and score < 50:
     print("Your grade is D")
 elif score >= 40 and score < 45:
     print("Your grade is E")
-elif score < 40 and score > 0 : 
-    print("Your grade is F!!")
+elif score < 40 and score >= 0 : 
+    print("Your grade is F")
 else:
-    print("Your score is invalid")                     
+    print("Your score is invalid, your score has to be between 0 and 100")                     
