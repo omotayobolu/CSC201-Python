@@ -10,12 +10,7 @@ class Book:
         print(f"Author of book: {self.author}")
         print(f"Number of pages in the book: {self.no_of_pages}")
         print(f"Type of book: {self.type}")
-
-book_info = Book("Rest", "Bolu", 150, "novel")
-print(book_info.print_info())            
-
-book1 = Book("Sleep", "Dan", 200, "comic")
-book2 = Book("Dance", "Joe", 321, "comedy")
+            
 
 class Library:
     def __init__(self):
@@ -31,7 +26,7 @@ class Library:
             book.print_info()
 
     def borrow_book(self, title):
-         #covert the string to lowercase, since the capitalization may not be correct
+         #covert the string to lowercase, for case sensitivity
         title= title.lower()
 
         # to find the book to be borrowed using the book title
@@ -39,17 +34,37 @@ class Library:
             if title == book.title.lower():
                 self.books.remove(book)
                 return book
-            else: 
-                return None    
+             
+        return None    
 
-
-
+# create a library instance
 library = Library()
-library.add_book(book1)
-library.add_book(book2)
-library.print_books()
 
-borrow_a_book = library.borrow_book("dance")
+# to read the book information from the books file created, add them to the library instance, then print the books in the library
 
-if borrow_a_book:
-    print(f"Borrowed book: {borrow_a_book.print_info()}")
+with open('books.txt', 'r') as books:
+    for line in books:
+        title, author, no_of_pages, type = line.strip().split(',')
+        #.strip() is used to remove extra white spaces in the string, and split(',') is used to split a string into a comma-separated list
+        book = Book(title, author, no_of_pages, type) #create an instance of Book
+        library.add_book(book) #to add the book to the library
+
+library.print_books() #to print books in the library
+
+
+#to borrow a book, use the input function to ask the user for the book they want to borrow
+# it is best to use a while loop so it can keep asking the user for a current input that is, a title of a book currently in the library then can terminate the loop after getting our required answer.
+while True:
+    book_to_borrow = input("Enter the title of the book you want to borrow: ")
+    borrowed_book = library.borrow_book(book_to_borrow)
+    if borrowed_book:
+        print("You borrowed: ")
+        print("")
+        borrowed_book.print_info()
+        print("")
+        print("Remaining books in the library after you borrowed: ")
+        print("")
+        library.print_books()
+        break
+    else:
+        print(f"There is no book titled {book_to_borrow} in the library. Try looking for another book")

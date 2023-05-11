@@ -1,0 +1,5 @@
+Purple Hibiscus, Chimamanda, 300, Fiction
+A brief history of time, Stephen Hawking, 256, Science non-Fiction
+Pride and prejudice, Tolkein, 1230, Fiction
+The Great Gatsby, Scott, 180, Fiction
+Galaxy, Adams, 193, science Fiction
